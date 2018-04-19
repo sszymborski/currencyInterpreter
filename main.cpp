@@ -4,14 +4,29 @@
 
 using namespace std;
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
-    Source *source = new Source("/home/szymon/Desktop/CPP/2018-04-18-04/inputFiles/main.txt");
+    bool noError = true;
+    char result[128];
+    const char * two;
+    const char * one = "./inputFiles/";
+    if(argc < 2)
+    {
+        two = "main.txt";
+    }
+    else
+    {
+        two = argv[1];
+    }
+    strcpy(result,one);
+    strcat(result,two);
+
+    Source *source = new Source(result);
     Scan scan(*source);
 
     SymType sym = mainsy;
 
-    while(sym != 37)
+    while(true)
     {
         sym = scan.NextSymbol();
         switch(sym)
@@ -53,9 +68,16 @@ int main(int argc, char* argv[])
             case raccessop:     cout << "raccessop"    << endl; break; // 34
             case laccessop:     cout << "laccessop"    << endl; break; // 35
             case comma:         cout << "comma"        << endl; break; // 36
-            case others:        cout << "others"       << endl; return 0; break; // 37
+            case others:        cout << "others"       << endl; break; // 37
+        }
+        if(sym == others)
+        {
+            noError = source->getNumerOfErrors()==0?true:false;
+            delete source;
+            break;
         }
     }
-    scan.ScanError(1);
+    if(!noError)
+        scan.ScanError(1);
     return 0;
 }

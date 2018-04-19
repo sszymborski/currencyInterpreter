@@ -6,11 +6,11 @@ Source::Source(const char *file)
     fp = fopen(fn, "r");
     if(!fp)
     {
-        cout << "Waluty: BLAD FATALNY - nie mozna otworzyc pliku \"" << fn << "\"\n";
+        cout << "Waluty: BLAD FATALNY - nie mozna otworzyc pliku \"" << fn << "\"" << endl;
         exit(1);
     }
-    cout << "\n Waluty, v.1.0, (c) 2018 (PW)\n";
-    cout << "Raport kompilacji dla pliku: \"" << fn << "\"\n\n";
+    cout << "Waluty" << endl;
+    cout << "Raport kompilacji dla pliku: \"" << fn << "\"" << endl << endl;
     etotal = einline = 0;
 }
 
@@ -36,7 +36,7 @@ int Source::NextChar()
     int r = 1;
     if(tpos.ln == 0)          // jesli zadna linia nie byla brana z pliku to wez nowa linie (piersza)
         r = NextLine();
-    else if(!Line[tpos.cn]) // jesli to byl ostatni znak z linni to wez nowa liniê
+    else if(!Line[tpos.cn]) // jesli to byl ostatni znak z linni to wez nowa linie
         r = NextLine();
     if(r)                   // jesli r = 0 tzn. nie ma juz nowych linii,  wez nastepny znak z tej linii
         return Line[tpos.cn++];
@@ -52,8 +52,6 @@ int Source::NextLine()
     tpos.cn = 0; // Ustaw pozycje na przed pierwszym znakiem (jeszcze go nie pobrano)
     while(Line[tpos.cn] == ' ')       // jesli jest jakas spacja to dodaj pozycje
         tpos.cn++;
-    //if((options&NOLIST)==0 )    // wypisz wiersz, jesli jest zaznaczona odpowiednia opcja kompilatora
-    //PrntLine();
     einline = 0; // 0 bledow w nowym wierszu
     return 1;
 }

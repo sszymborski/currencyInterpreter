@@ -1,8 +1,6 @@
 #ifndef SOURCE_H
 #define SOURCE_H
 
-// Klasa Source.
-// sekcja #include
 #include <stdio.h>
 #include <cstring>
 #include <iostream>
@@ -12,7 +10,7 @@
 
 using namespace std;
 
-extern int options; // Definicja w MP1SORC.CPP
+extern int options;
 struct TextPos
 {
     int ln, cn; // Numer wiersza, znaku (od 1)
@@ -35,6 +33,10 @@ public:
     const TextPos & GetPos() const
     {
         return tpos;
+    }
+    int getNumerOfErrors()
+    {
+        return etotal;
     }
 };
 

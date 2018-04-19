@@ -18,7 +18,6 @@ Scan::KeyRec Scan::KT[NKEYS]=
     { "else", elsesy }, // 8
     { "public", publicsy }, // 9
     { "private", privatesy }, // 10
-
 };
 
 unsigned Scan::hash(char *s, unsigned int len)
@@ -88,8 +87,10 @@ SymType Scan::NextSymbol()  // Glowna usluga scanera
         unsigned int len=0, h;
         do   // pobieramy identyfikarot do tabeli spell
         {
-            if(len<MAXIDLEN) spell[len++]=c;
-            else ScanError(IDENTIFIER2LONG, "Error : Przekroczono maksymalna dlugosc identyfikatora");
+            if(len<MAXIDLEN)
+                spell[len++]=c;
+            else
+                ScanError(IDENTIFIER2LONG, "Error : Przekroczono maksymalna dlugosc identyfikatora");
             Nextc();
         }
         while(isalnum(c));
@@ -166,12 +167,7 @@ SymType Scan::NextSymbol()  // Glowna usluga scanera
             //----Operatory 2 i 1 znakowe
             case ':':
                 Nextc();
-                if (c == '=')
-                {
-                    Nextc();
-                    return becomes;
-                }
-                else return colon;
+                return colon;
             case '<':
                 Nextc();
                 if (c == '=')
@@ -195,7 +191,8 @@ SymType Scan::NextSymbol()  // Glowna usluga scanera
                     Nextc();
                     return neop;
                 }
-                else return notop;                    //----Operatory 1 znakowe
+                else
+                    return notop;
             case '+':
                 Nextc();
                 return plusop;
@@ -207,7 +204,13 @@ SymType Scan::NextSymbol()  // Glowna usluga scanera
                 return times;
             case '=':
                 Nextc();
-                return eqop;
+                if (c == '=')
+                {
+                    Nextc();
+                    return eqop;
+                }
+                else
+                    return becomes;
             case '/':
                 Nextc();
                 return divop;
@@ -248,6 +251,7 @@ SymType Scan::NextSymbol()  // Glowna usluga scanera
         }
     }
 }
+
 void Scan::ScanError(int ecode, const char *mt, const char *at)
 {
     src.Error(ecode, atompos, mt, at);

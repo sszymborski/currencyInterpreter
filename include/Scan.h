@@ -5,12 +5,13 @@
 #include <cstring>
 #include <iostream>
 #include <iomanip>
+
 #include "Source.h"
 
 #define MAXIDLEN 50
 #define INT_MAX 1000000
 
-enum SymType // Atomy leksykalne Mini Pascal'a
+enum SymType // Atomy leksykalne
 {
     mainsy, // 0
     functionsy, // 1
