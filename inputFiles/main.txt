@@ -1,0 +1,71 @@
+func function ( USD x , PLN y ) USD
+{
+	if ( x >= 0.00 & y >= 0.00)
+	{
+		var i = 0;
+		while( i < 6 )
+		{
+			x = 1.01 * x;
+			i = i + 1; }
+		}
+	}
+	else
+	{
+		return 0.00;
+	}
+	return x + convert ( PLN , USD , y );
+}
+func main ( ) var
+{
+	USD balance = 100.00;
+	function ( balance );
+	return 0;
+}
+
+var
+main
+function
+matrix
+int
+return
+while
+break
+continue
+if
+else
+public
+private
+alamakotaakotmaaleuydghjsdh
+sfdgjsdfghjkjhfdgsfsfdsghfdjshgsfdhfdsgfh
+45678
+*
+/
++
+-
+>
+<
+<=
+>=
+!=
+=
+:=
+&
+!
+|
+,
+[
+]
+(
+)
+{
+}
+:
+;
+10
+1000
+10.0
+10.00
+10.001
+0.002
+int
+;
